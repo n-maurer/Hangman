@@ -28,16 +28,47 @@ app.get("/api/categories", async (request, response) => {
 });
 
 //Get one Category details
-app.get("/api/categories/:id", (request, response) => {
-    response.status(200).json({
-        status: "success",
-        category: "Movies",
-    });
+app.get("/api/categories/:id", async (request, response) => {
+    category_id = request.params.id;
+    try {
+        const results = await db.query(
+            "SELECT * FROM categories WHERE id = $1",
+            [category_id]
+        );
+        console.log(results);
+        response.status(200).json({
+            status: "success",
+            data: {
+                categories: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(500).json({
+            status: "error",
+            message: "Error getting category details",
+        });
+    }
 });
 
 //Create Category
-app.post("/api/categories", (request, response) => {
-    console.log(request.body);
+app.post("/api/categories", async (request, response) => {
+    try {
+        const results = await db.query(
+            "INSERT INTO categories (name) VALUES ($1) returning *",
+            [request.body.name]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                categories: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(422).json({
+            status: "error",
+            message: "Error creating new category",
+        });
+    }
 });
 
 //Delete Category
