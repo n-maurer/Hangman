@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const morgan = require("morgan");
+const db = require("./db");
 const app = express();
 
 app.use(express.json());
@@ -8,19 +8,23 @@ app.use(express.json());
 //Categories
 
 //List all categories
-app.get("/api/categories", (request, response) => {
-    console.log("route handler ran");
-    response.status(200).json({
-        status: "success",
-        data: {
-            categories: [
-                "Movies",
-                "TV Show Characters",
-                "TV Shows",
-                "Movie Characters",
-            ],
-        },
-    });
+app.get("/api/categories", async (request, response) => {
+    try {
+        const results = await db.query("SELECT * FROM categories");
+        console.log(results);
+        response.status(200).json({
+            status: "success",
+            results: results.rows.length,
+            data: {
+                categories: results.rows,
+            },
+        });
+    } catch (err) {
+        response.status(500).json({
+            status: "error",
+            message: "Error getting all categories",
+        });
+    }
 });
 
 //Get one Category details
