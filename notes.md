@@ -26,3 +26,8 @@ date_used DATE
 ## Commands
 
 node server.js in server repo to start server
+npm start
+
+## YouTube Video
+
+https://www.youtube.com/watch?v=7qAXvOFhlDc
