@@ -112,6 +112,30 @@ app.put("/api/categories/:id", async (request, response) => {
     }
 });
 
+//Words
+
+//List all Words
+app.get("/api/words", async (request, response) => {
+    try {
+        const results = await db.query(
+            "SELECT id, name, category_id FROM words"
+        );
+        console.log(results);
+        response.status(200).json({
+            status: "success",
+            results: results.rows.length,
+            data: {
+                words: results.rows,
+            },
+        });
+    } catch (err) {
+        response.status(500).json({
+            status: "error",
+            message: "Error getting all words",
+        });
+    }
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Server is up and listening on port ${port}`);
