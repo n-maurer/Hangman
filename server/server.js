@@ -29,7 +29,7 @@ app.get("/api/categories", async (request, response) => {
 
 //Get one Category details
 app.get("/api/categories/:id", async (request, response) => {
-    category_id = request.params.id;
+    var category_id = request.params.id;
     try {
         const results = await db.query(
             "SELECT * FROM categories WHERE id = $1",
@@ -64,7 +64,7 @@ app.post("/api/categories", async (request, response) => {
             },
         });
     } catch (err) {
-        response.status(422).json({
+        response.status(400).json({
             status: "error",
             message: "Error creating new category",
         });
@@ -72,17 +72,44 @@ app.post("/api/categories", async (request, response) => {
 });
 
 //Delete Category
-app.delete("/api/categories/:id", (request, response) => {
-    response.status(200).json({
-        status: "success",
-        category: "Movies",
-    });
+app.delete("/api/categories/:id", async (request, response) => {
+    var category_id = request.params.id;
+    try {
+        const results = await db.query(
+            "DELETE FROM categories WHERE id = ($1)",
+            [category_id]
+        );
+        response.status(200).json({
+            status: "success",
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error deleting category",
+        });
+    }
 });
 
-//Edit Category
-app.put("/api/categories/:id", (request, response) => {
-    console.log(request.params.id);
-    console.log(request.body);
+//Update Category
+app.put("/api/categories/:id", async (request, response) => {
+    var category_id = request.params.id;
+    try {
+        const results = await db.query(
+            "UPDATE categories SET name = ($1) WHERE id = ($2) returning *",
+            [request.body.name, category_id]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                categories: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error updating new category",
+        });
+    }
 });
 
 const port = process.env.PORT || 3001;
