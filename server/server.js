@@ -118,7 +118,9 @@ app.put("/api/categories/:id", async (request, response) => {
 app.get("/api/words", async (request, response) => {
     try {
         const results = await db.query(
-            "SELECT id, name, category_id FROM words"
+            `SELECT w.id, w.name, w.category_id, c.name AS category_name
+             FROM words w
+             LEFT JOIN categories c ON w.category_id = c.id`
         );
         console.log(results);
         response.status(200).json({
@@ -132,6 +134,53 @@ app.get("/api/words", async (request, response) => {
         response.status(500).json({
             status: "error",
             message: "Error getting all words",
+        });
+    }
+});
+
+//Get one Word details
+app.get("/api/words/:id", async (request, response) => {
+    var word_id = request.params.id;
+    try {
+        const results = await db.query(
+            `SELECT w.id, w.name, w.category_id, c.name AS category_name
+             FROM words w
+             LEFT JOIN categories c ON w.category_id = c.id
+             WHERE w.id = $1`,
+            [word_id]
+        );
+        console.log(results);
+        response.status(200).json({
+            status: "success",
+            data: {
+                categories: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(500).json({
+            status: "error",
+            message: "Error getting category details",
+        });
+    }
+});
+
+//Create Word
+app.post("/api/words", async (request, response) => {
+    try {
+        const results = await db.query(
+            "INSERT INTO words (name, category_id) VALUES ($1,$2) returning *",
+            [request.body.name, request.body.category_id]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                words: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error creating new word",
         });
     }
 });
