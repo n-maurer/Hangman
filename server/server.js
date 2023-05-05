@@ -159,7 +159,7 @@ app.get("/api/words/:id", async (request, response) => {
     } catch (err) {
         response.status(500).json({
             status: "error",
-            message: "Error getting category details",
+            message: "Error getting word details",
         });
     }
 });
@@ -181,6 +181,46 @@ app.post("/api/words", async (request, response) => {
         response.status(400).json({
             status: "error",
             message: "Error creating new word",
+        });
+    }
+});
+
+//Delete Word
+app.delete("/api/words/:id", async (request, response) => {
+    var word_id = request.params.id;
+    try {
+        const results = await db.query("DELETE FROM words WHERE id = ($1)", [
+            word_id,
+        ]);
+        response.status(200).json({
+            status: "success",
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error deleting word",
+        });
+    }
+});
+
+//Update Word
+app.put("/api/words/:id", async (request, response) => {
+    var word_id = request.params.id;
+    try {
+        const results = await db.query(
+            "UPDATE words SET name = $1, category_id = $2 WHERE id = $3 RETURNING *",
+            [request.body.name, request.body.category_id, word_id]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                words: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error updating new category",
         });
     }
 });
