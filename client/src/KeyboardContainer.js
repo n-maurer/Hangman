@@ -19,51 +19,52 @@ function KeyboardContainer() {
             <div className="keyboard-top-row">
                 {topRowLetters.map((letter) => {
                     return (
-                        <div className="letter-key">
-                            <button
-                                type="button"
-                                value={letter}
-                                onClick={() => handleLetterAddition(letter)}>
-                                <div className="test">{letter}</div>
-                            </button>
-                        </div>
+                        <button
+                            className="letter-button"
+                            type="button"
+                            value={letter}
+                            onClick={() => handleLetterAddition(letter)}>
+                            <div className="letter-key">{letter}</div>
+                        </button>
                     );
                 })}
             </div>
             <div className="keyboard-middle-row">
                 {middleRowLetters.map((letter) => {
                     return (
-                        <div className="letter-key">
-                            <button
-                                type="button"
-                                value={letter}
-                                onClick={() => handleLetterAddition(letter)}>
-                                <div className="test">{letter}</div>
-                            </button>
-                        </div>
+                        <button
+                            className="letter-button"
+                            type="button"
+                            value={letter}
+                            onClick={() => handleLetterAddition(letter)}>
+                            <div className="letter-key">{letter}</div>
+                        </button>
                     );
                 })}
             </div>
             <div className="keyboard-bottom-row">
                 <div className="letter-key enter">
-                    <button type="button" data-key="Enter">
-                        <div className="test">Etr</div>
+                    <button
+                        type="button"
+                        data-key="Enter"
+                        className="letter-button">
+                        <div className="test">Enter</div>
                     </button>
                 </div>
                 {bottomRowLetters.map((letter) => {
                     return (
-                        <div className="letter-key">
-                            <button
-                                type="button"
-                                value={letter}
-                                onClick={() => handleLetterAddition(letter)}>
-                                <div className="test">{letter}</div>
-                            </button>
-                        </div>
+                        <button
+                            className="letter-button"
+                            type="button"
+                            value={letter}
+                            onClick={() => handleLetterAddition(letter)}>
+                            <div className="letter-key">{letter}</div>
+                        </button>
                     );
                 })}
                 <div className="letter-key">
                     <button
+                        className="letter-button"
                         type="button"
                         value="Backspace"
                         onClick={handleBackspace}>
