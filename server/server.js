@@ -470,7 +470,7 @@ app.put("/api/used-words/:id", async (request, response) => {
     } catch (err) {
         response.status(400).json({
             status: "error",
-            message: "Error updating word of day",
+            message: "Error updating used word",
         });
     }
 });
