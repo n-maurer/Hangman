@@ -10,7 +10,7 @@ import KeyboardContainer from "./KeyboardContainer";
 function App() {
     return (
         <div className="App">
-            <div class="game-container">
+            <div className="game-container">
                 <HeaderContainer />
                 <AlphabetContainer />
                 <CategoryContainer />

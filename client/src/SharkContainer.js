@@ -1,4 +1,4 @@
 function SharkContainer() {
-    return <div class="stacked-div shark-container">Div 4</div>;
+    return <div className="stacked-div shark-container">Div 4</div>;
 }
 export default SharkContainer;
