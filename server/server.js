@@ -452,6 +452,28 @@ app.post("/api/used-words", async (request, response) => {
 });
 
 //Update Used Word
+app.put("/api/used-words/:id", async (request, response) => {
+    var used_word_id = request.params.id;
+    word_id = request.body.word_id;
+    var date_used = request.body.date_used;
+    try {
+        const results = await db.query(
+            "UPDATE used_words SET word_id = $1, date_used = $2 WHERE id = $3 RETURNING *",
+            [word_id, date_used, used_word_id]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                words: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error updating word of day",
+        });
+    }
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
