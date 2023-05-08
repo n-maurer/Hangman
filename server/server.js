@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-//Categories
+//Categories//////////////////////////////////////////////////////////
 
 //List all categories
 app.get("/api/categories", async (request, response) => {
@@ -112,7 +112,7 @@ app.put("/api/categories/:id", async (request, response) => {
     }
 });
 
-//Words
+//Words//////////////////////////////////////////////////////////
 
 //List all Words
 app.get("/api/words", async (request, response) => {
@@ -225,7 +225,7 @@ app.put("/api/words/:id", async (request, response) => {
     }
 });
 
-//Word of Day
+//Word of Day//////////////////////////////////////////////////////////
 
 //Todays Date
 function getTodaysDate() {
@@ -297,10 +297,11 @@ app.get("/api/word-of-day/random", async (request, response) => {
 //currently the data you send is just a word id (from word table)
 app.post("/api/word-of-day", async (request, response) => {
     var today = getTodaysDate();
+    var word_id = request.body.word_id;
     try {
         const results = await db.query(
             "INSERT INTO word_of_day (word_id, date) VALUES ($1,$2) returning *",
-            [request.body.word_id, today]
+            [word_id, today]
         );
         response.status(200).json({
             status: "success",
@@ -336,13 +337,30 @@ app.delete("/api/word-of-day/:id", async (request, response) => {
     }
 });
 
+//Clear Word of Day
+app.delete("/api/word-of-day/table/clear", async (request, response) => {
+    try {
+        const results = await db.query("DELETE FROM word_of_day");
+        response.status(200).json({
+            status: "success",
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error clearing word of day table",
+        });
+    }
+});
+
 //Update Word of Day
+//Updates date to todays date
 app.put("/api/word-of-day/:id", async (request, response) => {
+    var today = getTodaysDate();
     var wod_id = request.params.id;
     try {
         const results = await db.query(
-            "UPDATE word_of_day SET word_id = $1 WHERE id = $2 RETURNING *",
-            [request.body.word_id, wod_id]
+            "UPDATE word_of_day SET word_id = $1, date = $2 WHERE id = $3 RETURNING *",
+            [request.body.word_id, today, wod_id]
         );
         response.status(200).json({
             status: "success",
@@ -358,20 +376,82 @@ app.put("/api/word-of-day/:id", async (request, response) => {
     }
 });
 
-//Clear Word of Day
-app.delete("/api/word-of-day/table/clear", async (request, response) => {
+//Used Words//////////////////////////////////////////////////////////
+
+//List Used Words
+app.get("/api/used-words", async (request, response) => {
     try {
-        const results = await db.query("DELETE FROM word_of_day");
+        const results = await db.query(
+            `SELECT u.id, u.date_used, u.word_id, w.name AS word_name
+             FROM used_words u
+             LEFT JOIN words w ON u.word_id = w.id`
+        );
+        console.log(results);
         response.status(200).json({
             status: "success",
+            results: results.rows.length,
+            data: {
+                used_words: results.rows,
+            },
+        });
+    } catch (err) {
+        response.status(500).json({
+            status: "error",
+            message: "Error getting used words",
+        });
+    }
+});
+
+//Get Used Word Details
+app.get("/api/used-words/:id", async (request, response) => {
+    var word_id = request.params.id;
+    try {
+        const results = await db.query(
+            `SELECT u.id, u.date_used, u.word_id, w.name AS word_name
+             FROM used_words u
+             LEFT JOIN words w ON u.word_id = w.id
+             WHERE u.id = $1`,
+            [word_id]
+        );
+        console.log(results);
+        response.status(200).json({
+            status: "success",
+            data: {
+                categories: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(500).json({
+            status: "error",
+            message: "Error getting used word details",
+        });
+    }
+});
+
+//Create Used Word
+app.post("/api/used-words", async (request, response) => {
+    var word_id = request.body.word_id;
+    var date_used = request.body.date_used;
+    try {
+        const results = await db.query(
+            "INSERT INTO used_words (word_id, date_used) VALUES ($1,$2) returning *",
+            [word_id, date_used]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                used_words: results.rows[0],
+            },
         });
     } catch (err) {
         response.status(400).json({
             status: "error",
-            message: "Error clearing word of day table",
+            message: "Error creating new used word",
         });
     }
 });
+
+//Update Used Word
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
