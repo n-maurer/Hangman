@@ -17,24 +17,6 @@ import { updateWordProgress } from "./redux/WordProgress/word-progress.actions";
 function App(props) {
     return (
         <div className="App">
-            <div>Number Wrong: {props.numberWrong}</div>
-
-            <button onClick={() => props.increaseNumWrong()}>
-                Increase Count
-            </button>
-
-            <button onClick={() => props.decreaseNumWrong()}>
-                Decrease Count
-            </button>
-
-            <button onClick={() => props.changeLetterStatus()}>
-                Press "A"
-            </button>
-
-            <button onClick={() => props.updateWordProgress()}>
-                Word Progress update
-            </button>
-
             <div className="game-container">
                 <HeaderContainer />
                 <AlphabetContainer />
@@ -55,16 +37,16 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        increaseNumWrong: () => dispatch(increaseNumWrong()),
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         // increaseNumWrong: () => dispatch(increaseNumWrong()),
 
-        decreaseNumWrong: () => dispatch(decreaseNumWrong()),
+//         decreaseNumWrong: () => dispatch(decreaseNumWrong()),
 
-        changeLetterStatus: () => dispatch(changeLetterStatus("A", true)),
+//         // changeLetterStatus: () => dispatch(changeLetterStatus("A", true)),
 
-        updateWordProgress: () => dispatch(updateWordProgress(0, "T")),
-    };
-};
+//         updateWordProgress: () => dispatch(updateWordProgress(0, "T")),
+//     };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

@@ -1,5 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { increaseNumWrong } from "./redux/NumberWrong/num-wrong.actions";
+import { changeLetterStatus } from "./redux/LettersUsed/letters-used.actions";
+import { updateWordProgress } from "./redux/WordProgress/word-progress.actions";
 
 function KeyboardContainer(props) {
     const [typedWord, setTypedWord] = useState("");
@@ -7,8 +10,22 @@ function KeyboardContainer(props) {
     const handleLetterAddition = (event) => {
         setTypedWord(event);
     };
-    const handleBackspace = (event) => {
+
+    const handleBackspace = () => {
         setTypedWord(typedWord.slice(0, -1));
+    };
+
+    const handleEnter = () => {
+        props.changeLetterStatus(typedWord, true);
+        if (props.wordOfDay.includes(typedWord) === false) {
+            props.increaseNumWrong();
+        } else {
+            for (let i in props.wordOfDay) {
+                if (props.wordOfDay[i] === typedWord) {
+                    props.updateWordProgress(i, typedWord);
+                }
+            }
+        }
     };
 
     var topRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -109,7 +126,9 @@ function KeyboardContainer(props) {
                         type="button"
                         data-key="Enter"
                         className="letter-button">
-                        <div className="test">Enter</div>
+                        <div className="test" onClick={handleEnter}>
+                            Enter
+                        </div>
                     </button>
                 </div>
                 {bottomRowLetters.map((letter) => {
@@ -168,12 +187,24 @@ function KeyboardContainer(props) {
         </div>
     );
 }
+
 const mapStateToProps = (state) => {
     return {
         numberWrong: state.counter.numberWrong,
         lettersUsed: state.changeLetterStatus.lettersUsed,
         wordProgress: state.wordProgress.wordProgress,
+        wordOfDay: state.wordProgress.wordOfDay,
     };
 };
 
-export default connect(mapStateToProps)(KeyboardContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        increaseNumWrong: () => dispatch(increaseNumWrong()),
+        changeLetterStatus: (letter, status) =>
+            dispatch(changeLetterStatus(letter, status)),
+        updateWordProgress: (index, letter) =>
+            dispatch(updateWordProgress(index, letter)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(KeyboardContainer);

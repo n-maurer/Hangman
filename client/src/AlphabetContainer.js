@@ -1,8 +1,6 @@
 import { connect } from "react-redux";
 
 function AlphabetContainer(props) {
-    console.log("Letters Used:", props.lettersUsed);
-
     return (
         <div className="stacked-div alphabet-container">
             <div className="first-half-alphabet">
