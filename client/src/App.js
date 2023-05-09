@@ -16,7 +16,7 @@ import { updateWordProgress } from "./redux/WordProgress/word-progress.actions";
 
 function App(props) {
     return (
-        <div className="App">
+        <div className="app">
             <div className="game-container">
                 {props.wordOfDay.every(
                     (value, index) => value === props.wordProgress[index]
