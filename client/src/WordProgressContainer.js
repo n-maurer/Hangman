@@ -28,8 +28,6 @@ function WordProgressContainer() {
         }
     }
 
-    console.log(currentProgress);
-
     return (
         <div className="stacked-div word-progress-container">
             <div className="letter-spaces-container">
