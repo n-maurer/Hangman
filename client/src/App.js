@@ -18,12 +18,40 @@ function App(props) {
     return (
         <div className="App">
             <div className="game-container">
-                <HeaderContainer />
-                <AlphabetContainer />
-                <CategoryContainer />
-                <SharkContainer />
-                <WordProgressContainer />
-                <KeyboardContainer />
+                {props.wordOfDay.every(
+                    (value, index) => value === props.wordProgress[index]
+                ) === true ? (
+                    <>
+                        <HeaderContainer />
+                        <AlphabetContainer />
+                        <CategoryContainer />
+                        <SharkContainer />
+                        <WordProgressContainer />
+                        <div className="complete-container">Complete</div>
+                    </>
+                ) : (
+                    <>
+                        {props.numberWrong === 6 ? (
+                            <>
+                                <HeaderContainer />
+                                <AlphabetContainer />
+                                <CategoryContainer />
+                                <SharkContainer />
+                                <WordProgressContainer />
+                                <div className="complete-container">Lose</div>
+                            </>
+                        ) : (
+                            <>
+                                <HeaderContainer />
+                                <AlphabetContainer />
+                                <CategoryContainer />
+                                <SharkContainer />
+                                <WordProgressContainer />
+                                <KeyboardContainer />
+                            </>
+                        )}
+                    </>
+                )}
             </div>
         </div>
     );
@@ -34,6 +62,7 @@ const mapStateToProps = (state) => {
         numberWrong: state.counter.numberWrong,
         lettersUsed: state.changeLetterStatus.lettersUsed,
         wordProgress: state.wordProgress.wordProgress,
+        wordOfDay: state.wordProgress.wordOfDay,
     };
 };
 

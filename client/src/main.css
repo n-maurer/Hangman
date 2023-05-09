@@ -119,7 +119,9 @@
 
 }
 
-
+.complete-container {
+    flex-basis: 22.5%;
+}
 
 .keyboard-top-row {
     display: flex;
