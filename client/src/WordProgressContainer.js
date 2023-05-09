@@ -1,34 +1,7 @@
-function WordProgressContainer() {
-    const word = "Lion King";
-    const splitWord = word.split("");
+import { connect } from "react-redux";
 
-    const currentProgress = [];
-    for (let i of splitWord) {
-        if (i === " ") {
-            currentProgress.push(" ");
-        } else currentProgress.push("_");
-    }
-
-    var currentLetter = "K";
-    for (let letter in splitWord) {
-        if (splitWord[letter].toLowerCase() === currentLetter.toLowerCase()) {
-            currentProgress[letter] = splitWord[letter];
-        }
-    }
-    var currentLetter2 = "L";
-    for (let letter in splitWord) {
-        if (splitWord[letter].toLowerCase() === currentLetter2.toLowerCase()) {
-            currentProgress[letter] = splitWord[letter];
-        }
-    }
-    var currentLetter3 = "I";
-    for (let letter in splitWord) {
-        if (splitWord[letter].toLowerCase() === currentLetter3.toLowerCase()) {
-            currentProgress[letter] = splitWord[letter];
-        }
-    }
-
-    console.log(currentProgress);
+function WordProgressContainer(props) {
+    var currentProgress = props.wordProgress;
 
     return (
         <div className="stacked-div word-progress-container">
@@ -58,4 +31,13 @@ function WordProgressContainer() {
         </div>
     );
 }
-export default WordProgressContainer;
+
+const mapStateToProps = (state) => {
+    return {
+        numberWrong: state.counter.numberWrong,
+        lettersUsed: state.changeLetterStatus.lettersUsed,
+        wordProgress: state.wordProgress.wordProgress,
+        wordOfDay: state.wordProgress.wordOfDay,
+    };
+};
+export default connect(mapStateToProps)(WordProgressContainer);
