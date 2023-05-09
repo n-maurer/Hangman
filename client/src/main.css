@@ -30,7 +30,7 @@
 
 .header-container {
     flex-basis: 6%;
-    background-color: #f8fff3;
+    /* background-color: #f8fff3; */
     border-bottom: 1px solid black;
     display: flex;
     justify-content: center;
@@ -40,7 +40,7 @@
 
 .alphabet-container {
     flex-basis: 14%;
-    background-color: rgb(255, 237, 255);
+    /* background-color: rgb(255, 237, 255); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,7 +85,7 @@
 
 .category-container {
     flex-basis: 10%;
-    background-color: rgb(255, 233, 233);
+    /* background-color: rgb(255, 233, 233); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,21 +101,21 @@
 
 .shark-container {
     flex-basis: 20%;
-    background-color: rgb(255, 247, 231);
+    /* background-color: rgb(255, 247, 231); */
     display: flex;
     align-items: center;
 }
 
 .word-progress-container {
     flex-basis: 22.5%;
-    background-color: rgb(238, 255, 255);
+    /* background-color: rgb(238, 255, 255); */
     display: flex;
 
 }
 
 .keyboard-container {
     flex-basis: 22.5%;
-    background-color: rgba(255, 255, 231, 0.701);
+    /* background-color: rgba(255, 255, 231, 0.701); */
 
 }
 
