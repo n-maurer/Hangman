@@ -14,7 +14,7 @@ function AlphabetContainer(props) {
                                 <div key={index} className="letter ">
                                     {letter}
                                 </div>
-                            ); // Render empty div
+                            );
                         } else {
                             return (
                                 <div
@@ -25,7 +25,6 @@ function AlphabetContainer(props) {
                             );
                         }
                     })}
-                {/* <div className="letter strikethrough-letter">G,</div> */}
             </div>
             <div className="second-half-alphabet">
                 {Object.entries(props.lettersUsed)
@@ -36,7 +35,7 @@ function AlphabetContainer(props) {
                                 <div key={index} className="letter ">
                                     {letter}
                                 </div>
-                            ); // Render empty div
+                            );
                         } else {
                             return (
                                 <div

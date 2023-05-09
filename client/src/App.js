@@ -15,8 +15,6 @@ import { changeLetterStatus } from "./redux/LettersUsed/letters-used.actions";
 import { updateWordProgress } from "./redux/WordProgress/word-progress.actions";
 
 function App(props) {
-    // console.log("Letters Used:", props.lettersUsed);
-    // console.log("Word Progress:", props.wordProgress);
     return (
         <div className="App">
             <div>Number Wrong: {props.numberWrong}</div>

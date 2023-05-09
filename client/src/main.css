@@ -154,6 +154,12 @@
     font-weight: bold;
 }
 
+.letter-button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    /* Add any additional styles for the disabled state */
+}
+
 @media (min-width: 601px) {
     .letter-button {
         flex-grow: 1;
@@ -165,6 +171,28 @@
 
     .keyboard-top-row {
         padding-top: 0%;
+    }
+}
+
+.letter-button-pressed {
+    flex-grow: 1;
+    margin: 5px;
+    padding: 5px;
+    font-size: 18px;
+    background-color: rgba(50, 45, 45, 0.783);
+    border-radius: 20%;
+    color: white;
+    border-color: #fdfdfd;
+    font-weight: bold;
+}
+
+@media (min-width: 601px) {
+    .letter-button-pressed {
+        flex-grow: 1;
+        margin: 5px;
+        padding: 10px;
+        font-size: 18px;
+
     }
 }
 

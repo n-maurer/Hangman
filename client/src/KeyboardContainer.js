@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { connect } from "react-redux";
 
-function KeyboardContainer() {
+function KeyboardContainer(props) {
     const [typedWord, setTypedWord] = useState("");
 
     const handleLetterAddition = (event) => {
-        setTypedWord(typedWord.concat(event));
+        setTypedWord(event);
     };
     const handleBackspace = (event) => {
         setTypedWord(typedWord.slice(0, -1));
@@ -13,33 +14,93 @@ function KeyboardContainer() {
     var topRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     var middleRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     var bottomRowLetters = ["Z", "X", "C", "V", "B", "N", "M"];
+
     return (
         <div className="stacked-div keyboard-container">
-            <div>{typedWord}</div>
             <div className="keyboard-top-row">
                 {topRowLetters.map((letter) => {
-                    return (
-                        <button
-                            className="letter-button"
-                            type="button"
-                            value={letter}
-                            onClick={() => handleLetterAddition(letter)}>
-                            <div className="letter-key">{letter}</div>
-                        </button>
-                    );
+                    if (letter === typedWord) {
+                        return (
+                            <button
+                                className="letter-button-pressed"
+                                disabled
+                                type="button"
+                                value={letter}
+                                onClick={() => handleLetterAddition(letter)}>
+                                <div className="letter-key">{letter}</div>
+                            </button>
+                        );
+                    } else {
+                        if (props.lettersUsed[letter] === true) {
+                            return (
+                                <button
+                                    className="letter-button disabled"
+                                    disabled
+                                    type="button"
+                                    value={letter}
+                                    onClick={() =>
+                                        handleLetterAddition(letter)
+                                    }>
+                                    <div className="letter-key">{letter}</div>
+                                </button>
+                            );
+                        } else {
+                            return (
+                                <button
+                                    className="letter-button"
+                                    type="button"
+                                    value={letter}
+                                    onClick={() =>
+                                        handleLetterAddition(letter)
+                                    }>
+                                    <div className="letter-key">{letter}</div>
+                                </button>
+                            );
+                        }
+                    }
                 })}
             </div>
             <div className="keyboard-middle-row">
                 {middleRowLetters.map((letter) => {
-                    return (
-                        <button
-                            className="letter-button"
-                            type="button"
-                            value={letter}
-                            onClick={() => handleLetterAddition(letter)}>
-                            <div className="letter-key">{letter}</div>
-                        </button>
-                    );
+                    if (letter === typedWord) {
+                        return (
+                            <button
+                                className="letter-button-pressed"
+                                disabled
+                                type="button"
+                                value={letter}
+                                onClick={() => handleLetterAddition(letter)}>
+                                <div className="letter-key">{letter}</div>
+                            </button>
+                        );
+                    } else {
+                        if (props.lettersUsed[letter] === true) {
+                            return (
+                                <button
+                                    className="letter-button disabled"
+                                    disabled
+                                    type="button"
+                                    value={letter}
+                                    onClick={() =>
+                                        handleLetterAddition(letter)
+                                    }>
+                                    <div className="letter-key">{letter}</div>
+                                </button>
+                            );
+                        } else {
+                            return (
+                                <button
+                                    className="letter-button"
+                                    type="button"
+                                    value={letter}
+                                    onClick={() =>
+                                        handleLetterAddition(letter)
+                                    }>
+                                    <div className="letter-key">{letter}</div>
+                                </button>
+                            );
+                        }
+                    }
                 })}
             </div>
             <div className="keyboard-bottom-row">
@@ -52,15 +113,45 @@ function KeyboardContainer() {
                     </button>
                 </div>
                 {bottomRowLetters.map((letter) => {
-                    return (
-                        <button
-                            className="letter-button"
-                            type="button"
-                            value={letter}
-                            onClick={() => handleLetterAddition(letter)}>
-                            <div className="letter-key">{letter}</div>
-                        </button>
-                    );
+                    if (letter === typedWord) {
+                        return (
+                            <button
+                                className="letter-button-pressed"
+                                disabled
+                                type="button"
+                                value={letter}
+                                onClick={() => handleLetterAddition(letter)}>
+                                <div className="letter-key">{letter}</div>
+                            </button>
+                        );
+                    } else {
+                        if (props.lettersUsed[letter] === true) {
+                            return (
+                                <button
+                                    className="letter-button disabled"
+                                    disabled
+                                    type="button"
+                                    value={letter}
+                                    onClick={() =>
+                                        handleLetterAddition(letter)
+                                    }>
+                                    <div className="letter-key">{letter}</div>
+                                </button>
+                            );
+                        } else {
+                            return (
+                                <button
+                                    className="letter-button"
+                                    type="button"
+                                    value={letter}
+                                    onClick={() =>
+                                        handleLetterAddition(letter)
+                                    }>
+                                    <div className="letter-key">{letter}</div>
+                                </button>
+                            );
+                        }
+                    }
                 })}
                 <div className="letter-key">
                     <button
@@ -77,4 +168,12 @@ function KeyboardContainer() {
         </div>
     );
 }
-export default KeyboardContainer;
+const mapStateToProps = (state) => {
+    return {
+        numberWrong: state.counter.numberWrong,
+        lettersUsed: state.changeLetterStatus.lettersUsed,
+        wordProgress: state.wordProgress.wordProgress,
+    };
+};
+
+export default connect(mapStateToProps)(KeyboardContainer);
