@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import counterReducer from "./Counter/counter.reducer";
+import numberWrongReducer from "./NumberWrong/num-wrong.reducer";
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
+    counter: numberWrongReducer,
 });
 
 export default rootReducer;

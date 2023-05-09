@@ -1,7 +1,7 @@
-import { INCREMENT, DECREMENT } from "./counter.types";
+import { INCREMENT, DECREMENT } from "./num-wrong.types";
 
 const INITIAL_STATE = {
-    count: 0,
+    numberWrong: 0,
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -9,13 +9,13 @@ const reducer = (state = INITIAL_STATE, action) => {
         case INCREMENT:
             return {
                 ...state,
-                count: state.count + 1,
+                numberWrong: state.numberWrong + 1,
             };
 
         case DECREMENT:
             return {
                 ...state,
-                count: state.count - 1,
+                numberWrong: state.numberWrong - 1,
             };
 
         default:

@@ -8,20 +8,20 @@ import WordProgressContainer from "./WordProgressContainer";
 import KeyboardContainer from "./KeyboardContainer";
 import { connect } from "react-redux";
 import {
-    increaseCounter,
-    decreaseCounter,
-} from "./redux/Counter/counter.actions";
+    increaseNumWrong,
+    decreaseNumWrong,
+} from "./redux/NumberWrong/num-wrong.actions";
 
 function App(props) {
     return (
         <div className="App">
-            <div>Count: {props.count}</div>
+            <div>Number Wrong: {props.numberWrong}</div>
 
-            <button onClick={() => props.increaseCounter()}>
+            <button onClick={() => props.increaseNumWrong()}>
                 Increase Count
             </button>
 
-            <button onClick={() => props.decreaseCounter()}>
+            <button onClick={() => props.decreaseNumWrong()}>
                 Decrease Count
             </button>
             <div className="game-container">
@@ -38,15 +38,15 @@ function App(props) {
 
 const mapStateToProps = (state) => {
     return {
-        count: state.counter.count,
+        numberWrong: state.counter.numberWrong,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        increaseCounter: () => dispatch(increaseCounter()),
+        increaseNumWrong: () => dispatch(increaseNumWrong()),
 
-        decreaseCounter: () => dispatch(decreaseCounter()),
+        decreaseNumWrong: () => dispatch(decreaseNumWrong()),
     };
 };
 
