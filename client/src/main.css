@@ -119,13 +119,7 @@
 
 }
 
-/* .keyboard-top-row {
-    margin-top: 15px;
-    display: flex;
-    width: 100%;
-    margin-left: 2px;
-    justify-content: space-between;
-} */
+
 
 .keyboard-top-row {
     display: flex;
@@ -184,10 +178,11 @@
 .letter-space {
     margin: 5px;
     min-width: 5%;
-    /* flex-grow: 1; */
     border-bottom: 2px solid black;
     max-height: 50px;
     min-height: 20px;
+    justify-content: center;
+    display: flex
 }
 
 .new-line {
@@ -199,4 +194,10 @@
 .wave-img {
     width: 100%;
     height: fit-content
+}
+
+.letter-text {
+    display: inline-block;
+    align-self: flex-end;
+    font-size: x-large;
 }
