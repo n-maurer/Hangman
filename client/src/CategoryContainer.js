@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 function CategoryContainer(props) {
     return (
         <div className="stacked-div category-container">
-            <div className="category-name">{props.wordOfDayCategory}</div>
+            {props.wordOfDayCategory === "loading" ? (
+                <>
+                    <div className="loading-circle"></div>) :
+                </>
+            ) : (
+                <div className="category-name">{props.wordOfDayCategory}</div>
+            )}
         </div>
     );
 }

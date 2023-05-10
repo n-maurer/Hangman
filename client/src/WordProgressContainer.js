@@ -6,27 +6,35 @@ function WordProgressContainer(props) {
     return (
         <div className="stacked-div word-progress-container">
             <div className="letter-spaces-container">
-                {currentProgress.map((letter) => {
-                    return (
-                        <>
-                            {letter === " " ? (
-                                <div className="new-line"></div>
-                            ) : (
+                {currentProgress === "loading" ? (
+                    <div className="loading-circle"></div>
+                ) : (
+                    <>
+                        {currentProgress?.map((letter) => {
+                            return (
                                 <>
-                                    {letter === "_" ? (
-                                        <div className="letter-space"> </div>
+                                    {letter === " " ? (
+                                        <div className="new-line"></div>
                                     ) : (
-                                        <div className="letter-space">
-                                            <div className="letter-text">
-                                                {letter}
-                                            </div>
-                                        </div>
+                                        <>
+                                            {letter === "_" ? (
+                                                <div className="letter-space">
+                                                    {" "}
+                                                </div>
+                                            ) : (
+                                                <div className="letter-space">
+                                                    <div className="letter-text">
+                                                        {letter}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </>
-                            )}
-                        </>
-                    );
-                })}
+                            );
+                        })}
+                    </>
+                )}
             </div>
         </div>
     );

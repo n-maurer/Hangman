@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const db = require("./db");
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
@@ -247,9 +249,10 @@ function getTodaysDate() {
 app.get("/api/word-of-day", async (request, response) => {
     try {
         const results = await db.query(
-            `SELECT wod.id, wod.date, wod.word_id, w.name AS word_name
+            `SELECT wod.id, wod.date, wod.word_id, w.name AS word_name, c.name AS category_name
              FROM word_of_day wod
-             LEFT JOIN words w ON wod.word_id = w.id`
+             LEFT JOIN words w ON wod.word_id = w.id
+             LEFT JOIN categories c ON w.category_id = c.id;`
         );
         console.log(results);
         response.status(200).json({
