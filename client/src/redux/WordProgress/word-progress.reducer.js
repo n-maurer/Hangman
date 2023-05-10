@@ -4,6 +4,7 @@ import {
     UPDATE_WORD_OF_DAY_EMPTY,
     UPDATE_LOADING_TO_FALSE,
     UPDATE_WORD_OF_DAY_CATEGORY,
+    UPDATE_WORD_OF_DAY_DATE,
 } from "./word-progress.types";
 
 const wod = { name: "Tarzan", category: "Movies", date: "5/9/2023" };
@@ -28,7 +29,7 @@ const INITIAL_STATE = {
     wordProgress: "loading",
     wordOfDay: wodArr,
     wordOfDayCategory: "loading",
-    wordOfDayDate: wod["date"],
+    wordOfDayDate: "loading",
     loading: true,
 };
 
@@ -66,6 +67,13 @@ const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 wordOfDayCategory: category,
+            };
+
+        case UPDATE_WORD_OF_DAY_DATE:
+            const { date } = action.payload;
+            return {
+                ...state,
+                wordOfDayDate: date,
             };
 
         case UPDATE_LOADING_TO_FALSE:

@@ -5,7 +5,7 @@ function CategoryContainer(props) {
         <div className="stacked-div category-container">
             {props.wordOfDayCategory === "loading" ? (
                 <>
-                    <div className="loading-circle"></div>) :
+                    <div className="loading-circle"></div>
                 </>
             ) : (
                 <div className="category-name">{props.wordOfDayCategory}</div>

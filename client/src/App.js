@@ -13,6 +13,7 @@ import WordOfDayAPI from "./apis/WordOfDayAPI";
 import { useEffect } from "react";
 import { updateLoading } from "./redux/WordProgress/word-progress.actions";
 import { updateWordOfDayCategory } from "./redux/WordProgress/word-progress.actions";
+import { updateWordOfDayDate } from "./redux/WordProgress/word-progress.actions";
 
 function App(props) {
     useEffect(() => {
@@ -30,6 +31,9 @@ function App(props) {
                 props.updateWordOfDay(wodArr);
                 props.updateWordOfDayCategory(
                     response.data.data.word_of_day[0].category_name
+                );
+                props.updateWordOfDayDate(
+                    response.data.data.word_of_day[0].date
                 );
                 // props.updateLoading(false);
             } catch (err) {}
@@ -105,6 +109,7 @@ const mapDispatchToProps = (dispatch) => {
         updateLoading: (bool) => dispatch(updateLoading(bool)),
         updateWordOfDayCategory: (category) =>
             dispatch(updateWordOfDayCategory(category)),
+        updateWordOfDayDate: (date) => dispatch(updateWordOfDayDate(date)),
     };
 };
 

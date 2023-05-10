@@ -4,6 +4,7 @@ import {
     UPDATE_WORD_OF_DAY_EMPTY,
     UPDATE_LOADING_TO_FALSE,
     UPDATE_WORD_OF_DAY_CATEGORY,
+    UPDATE_WORD_OF_DAY_DATE,
 } from "./word-progress.types";
 
 export const updateWordProgress = (index, letter) => {
@@ -47,6 +48,15 @@ export const updateWordOfDayCategory = (category) => {
         type: UPDATE_WORD_OF_DAY_CATEGORY,
         payload: {
             category,
+        },
+    };
+};
+
+export const updateWordOfDayDate = (date) => {
+    return {
+        type: UPDATE_WORD_OF_DAY_DATE,
+        payload: {
+            date,
         },
     };
 };
