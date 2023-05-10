@@ -14,12 +14,13 @@ import { useEffect } from "react";
 import { updateLoading } from "./redux/WordProgress/word-progress.actions";
 import { updateWordOfDayCategory } from "./redux/WordProgress/word-progress.actions";
 import { updateWordOfDayDate } from "./redux/WordProgress/word-progress.actions";
+import TestDiv from "./TestDiv";
 
 function App(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await WordOfDayAPI.get("/");
+                const response = await WordOfDayAPI.get("/word-of-day");
                 var wod = response.data.data.word_of_day[0].word_name;
                 const wodArr = [];
                 const progressArr = [];
@@ -43,6 +44,7 @@ function App(props) {
 
     return (
         <div className="app">
+            <TestDiv />
             <div className="game-container">
                 <>
                     {props.wordOfDay.every(

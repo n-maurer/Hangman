@@ -120,7 +120,7 @@ app.put("/api/categories/:id", async (request, response) => {
 app.get("/api/words", async (request, response) => {
     try {
         const results = await db.query(
-            `SELECT w.id, w.name, w.category_id, c.name AS category_name
+            `SELECT w.id, w.name, w.category_id, w.used, c.name AS category_name
              FROM words w
              LEFT JOIN categories c ON w.category_id = c.id`
         );
@@ -227,6 +227,28 @@ app.put("/api/words/:id", async (request, response) => {
     }
 });
 
+//Update Word to make Used = True
+app.put("/api/words/:id/used", async (request, response) => {
+    var word_id = request.params.id;
+    try {
+        const results = await db.query(
+            "UPDATE words SET used = $1 WHERE id = $2 RETURNING *",
+            [true, word_id]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                words: results.rows[0],
+            },
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error updating word",
+        });
+    }
+});
+
 //Word of Day//////////////////////////////////////////////////////////
 
 //Todays Date
@@ -277,8 +299,9 @@ app.get("/api/word-of-day/random", async (request, response) => {
             `SELECT w.id, w.name, w.category_id, c.name AS category_name
              FROM words w
              LEFT JOIN categories c ON w.category_id = c.id
+             WHERE w.used = false
              ORDER BY random()
-             LIMIT 1`
+             LIMIT 1;`
         );
         console.log(randomResults);
         response.status(200).json({
@@ -304,7 +327,7 @@ app.post("/api/word-of-day", async (request, response) => {
     try {
         const results = await db.query(
             "INSERT INTO word_of_day (word_id, date) VALUES ($1,$2) returning *",
-            [word_id, today]
+            [word_id, "05/09/2023"]
         );
         response.status(200).json({
             status: "success",
@@ -358,12 +381,11 @@ app.delete("/api/word-of-day/table/clear", async (request, response) => {
 //Update Word of Day
 //Updates date to todays date
 app.put("/api/word-of-day/:id", async (request, response) => {
-    var today = getTodaysDate();
     var wod_id = request.params.id;
     try {
         const results = await db.query(
             "UPDATE word_of_day SET word_id = $1, date = $2 WHERE id = $3 RETURNING *",
-            [request.body.word_id, today, wod_id]
+            [request.body.word_id, request.body.date, wod_id]
         );
         response.status(200).json({
             status: "success",
@@ -474,6 +496,25 @@ app.put("/api/used-words/:id", async (request, response) => {
         response.status(400).json({
             status: "error",
             message: "Error updating used word",
+        });
+    }
+});
+
+//Delete Used Word
+app.delete("/api/used-words/:id", async (request, response) => {
+    var word_id = request.params.id;
+    try {
+        const results = await db.query(
+            "DELETE FROM used_words WHERE id = ($1)",
+            [word_id]
+        );
+        response.status(200).json({
+            status: "success",
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error deleting used word",
         });
     }
 });
