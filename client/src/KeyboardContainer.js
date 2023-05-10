@@ -128,7 +128,7 @@ function KeyboardContainer(props) {
                             data-key="Enter"
                             className="letter-button">
                             Enter
-                        </button>{" "}
+                        </button>
                     </div>
                 </div>
                 {bottomRowLetters.map((letter) => {

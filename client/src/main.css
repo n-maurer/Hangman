@@ -241,6 +241,18 @@ button {
     display: inline-block;
     align-self: flex-end;
     font-size: x-large;
+    animation: flip 2s;
+    transform-style: preserve-3d;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(270deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
 }
 
 .loading-circle {
