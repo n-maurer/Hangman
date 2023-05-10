@@ -122,14 +122,14 @@ function KeyboardContainer(props) {
             </div>
             <div className="keyboard-bottom-row">
                 <div className="letter-key enter">
-                    <button
-                        type="button"
-                        data-key="Enter"
-                        className="letter-button">
-                        <div className="test" onClick={handleEnter}>
+                    <div className="test" onClick={handleEnter}>
+                        <button
+                            type="button"
+                            data-key="Enter"
+                            className="letter-button">
                             Enter
-                        </div>
-                    </button>
+                        </button>{" "}
+                    </div>
                 </div>
                 {bottomRowLetters.map((letter) => {
                     if (letter === typedWord) {
