@@ -33,3 +33,11 @@ npm start
 
 https://www.youtube.com/watch?v=7qAXvOFhlDc
 2:46:33
+
+## Colors
+
+Primary Hex #010C80
+RGB rgb(1,12,128)
+
+Secondary Hex #77D4FC
+RGB rgb(119,212,252)

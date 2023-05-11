@@ -5,10 +5,17 @@ function HeaderContainer(props) {
 
     return (
         <div className="stacked-div header-container">
+            <img
+                className="header-logo"
+                id="header-logo"
+                src={require("./images/logos/sharkbait-high-resolution-logo-color-on-transparent-background.png")}
+                alt="Shark Bait Logo"
+            />
             {date === "loading" ? (
                 <div className="loading-circle"></div>
             ) : (
-                <div>{date}</div>
+                // <div>{date}</div>
+                <div></div>
             )}
         </div>
     );

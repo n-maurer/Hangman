@@ -11,9 +11,9 @@ function SharkContainer(props) {
             <img
                 className="wave-img"
                 id="wave-img"
-                src={require(`./images/${
+                src={require(`./images/shark-container/shark-container-${
                     numIncorrectLetters + 1
-                }-position.png`)}
+                }.png`)}
                 alt="Waves"
             />
         </div>

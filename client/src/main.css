@@ -1,9 +1,9 @@
 body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Passion One', cursive;
 }
 
 button {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Passion One', cursive;
 }
 
 
@@ -273,4 +273,11 @@ button {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+.header-logo {
+    width: 50%;
+    height: fit-content;
+    margin-bottom: 5px;
 }
