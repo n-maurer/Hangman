@@ -15,6 +15,8 @@ import { updateLoading } from "./redux/WordProgress/word-progress.actions";
 import { updateWordOfDayCategory } from "./redux/WordProgress/word-progress.actions";
 import { updateWordOfDayDate } from "./redux/WordProgress/word-progress.actions";
 import TestDiv from "./TestDiv";
+import Complete from "./Complete";
+import Incomplete from "./Incomplete";
 
 function App(props) {
     useEffect(() => {
@@ -56,7 +58,7 @@ function App(props) {
                             <CategoryContainer />
                             <SharkContainer />
                             <WordProgressContainer />
-                            <div className="complete-container">Complete</div>
+                            <Complete />
                         </>
                     ) : (
                         <>
@@ -67,9 +69,7 @@ function App(props) {
                                     <CategoryContainer />
                                     <SharkContainer />
                                     <WordProgressContainer />
-                                    <div className="complete-container">
-                                        Lose
-                                    </div>
+                                    <Incomplete />
                                 </>
                             ) : (
                                 <>

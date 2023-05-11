@@ -219,6 +219,7 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    margin-bottom: 25px;
 }
 
 .letter-space {
@@ -286,4 +287,29 @@ button {
     width: 50%;
     height: fit-content;
     margin-bottom: 5px;
+}
+
+.complete {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: white;
+    animation: slide-in 1s ease-in-out;
+    margin-top: 30px;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.lose {
+    color: rgb(219, 3, 3)
 }
