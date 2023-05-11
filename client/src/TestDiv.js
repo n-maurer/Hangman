@@ -48,7 +48,7 @@ function TestDiv() {
 
     return (
         <div>
-            <button onClick={nextDay}>test</button>
+            <button onClick={nextDay}>Next Day</button>
         </div>
     );
 }

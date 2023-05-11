@@ -249,6 +249,27 @@ app.put("/api/words/:id/used", async (request, response) => {
     }
 });
 
+//Update Word to make all words Used = false
+app.put("/api/words/used/all/false", async (request, response) => {
+    try {
+        const results = await db.query(
+            "UPDATE words SET used = $1 RETURNING *",
+            [false]
+        );
+        response.status(200).json({
+            status: "success",
+            data: {
+                words: results.rows,
+            },
+        });
+    } catch (err) {
+        response.status(400).json({
+            status: "error",
+            message: "Error updating words",
+        });
+    }
+});
+
 //Word of Day//////////////////////////////////////////////////////////
 
 //Todays Date

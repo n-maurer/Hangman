@@ -11,10 +11,6 @@ function KeyboardContainer(props) {
         setTypedWord(event);
     };
 
-    // const handleBackspace = () => {
-    //     setTypedWord(typedWord.slice(0, -1));
-    // };
-
     const handleEnter = () => {
         props.changeLetterStatus(typedWord, true);
         if (props.wordOfDay.includes(typedWord) === false) {
@@ -44,7 +40,9 @@ function KeyboardContainer(props) {
                                 disabled
                                 type="button"
                                 value={letter}
-                                onClick={() => handleLetterAddition(letter)}>
+                                onClick={() => handleLetterAddition(letter)}
+                                key={letter} // Add key prop
+                            >
                                 <div className="letter-key">{letter}</div>
                             </button>
                         );
@@ -56,9 +54,9 @@ function KeyboardContainer(props) {
                                     disabled
                                     type="button"
                                     value={letter}
-                                    onClick={() =>
-                                        handleLetterAddition(letter)
-                                    }>
+                                    onClick={() => handleLetterAddition(letter)}
+                                    key={letter} // Add key prop
+                                >
                                     <div className="letter-key">{letter}</div>
                                 </button>
                             );
@@ -68,9 +66,9 @@ function KeyboardContainer(props) {
                                     className="letter-button"
                                     type="button"
                                     value={letter}
-                                    onClick={() =>
-                                        handleLetterAddition(letter)
-                                    }>
+                                    onClick={() => handleLetterAddition(letter)}
+                                    key={letter} // Add key prop
+                                >
                                     <div className="letter-key">{letter}</div>
                                 </button>
                             );
@@ -87,7 +85,9 @@ function KeyboardContainer(props) {
                                 disabled
                                 type="button"
                                 value={letter}
-                                onClick={() => handleLetterAddition(letter)}>
+                                onClick={() => handleLetterAddition(letter)}
+                                key={letter} // Add key prop
+                            >
                                 <div className="letter-key">{letter}</div>
                             </button>
                         );
@@ -99,9 +99,9 @@ function KeyboardContainer(props) {
                                     disabled
                                     type="button"
                                     value={letter}
-                                    onClick={() =>
-                                        handleLetterAddition(letter)
-                                    }>
+                                    onClick={() => handleLetterAddition(letter)}
+                                    key={letter} // Add key prop
+                                >
                                     <div className="letter-key">{letter}</div>
                                 </button>
                             );
@@ -111,9 +111,9 @@ function KeyboardContainer(props) {
                                     className="letter-button"
                                     type="button"
                                     value={letter}
-                                    onClick={() =>
-                                        handleLetterAddition(letter)
-                                    }>
+                                    onClick={() => handleLetterAddition(letter)}
+                                    key={letter} // Add key prop
+                                >
                                     <div className="letter-key">{letter}</div>
                                 </button>
                             );
@@ -140,7 +140,9 @@ function KeyboardContainer(props) {
                                 disabled
                                 type="button"
                                 value={letter}
-                                onClick={() => handleLetterAddition(letter)}>
+                                onClick={() => handleLetterAddition(letter)}
+                                key={letter} // Add key prop
+                            >
                                 <div className="letter-key">{letter}</div>
                             </button>
                         );
@@ -152,9 +154,9 @@ function KeyboardContainer(props) {
                                     disabled
                                     type="button"
                                     value={letter}
-                                    onClick={() =>
-                                        handleLetterAddition(letter)
-                                    }>
+                                    onClick={() => handleLetterAddition(letter)}
+                                    key={letter} // Add key prop
+                                >
                                     <div className="letter-key">{letter}</div>
                                 </button>
                             );
@@ -164,9 +166,9 @@ function KeyboardContainer(props) {
                                     className="letter-button"
                                     type="button"
                                     value={letter}
-                                    onClick={() =>
-                                        handleLetterAddition(letter)
-                                    }>
+                                    onClick={() => handleLetterAddition(letter)}
+                                    key={letter} // Add key prop
+                                >
                                     <div className="letter-key">{letter}</div>
                                 </button>
                             );
