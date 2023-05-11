@@ -11,9 +11,9 @@ function KeyboardContainer(props) {
         setTypedWord(event);
     };
 
-    const handleBackspace = () => {
-        setTypedWord(typedWord.slice(0, -1));
-    };
+    // const handleBackspace = () => {
+    //     setTypedWord(typedWord.slice(0, -1));
+    // };
 
     const handleEnter = () => {
         props.changeLetterStatus(typedWord, true);
@@ -26,6 +26,7 @@ function KeyboardContainer(props) {
                 }
             }
         }
+        setTypedWord("");
     };
 
     var topRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -172,15 +173,6 @@ function KeyboardContainer(props) {
                         }
                     }
                 })}
-                <div className="letter-key">
-                    <button
-                        className="letter-button"
-                        type="button"
-                        value="Backspace"
-                        onClick={handleBackspace}>
-                        <div className="test">{"<"}</div>
-                    </button>
-                </div>
             </div>
             <div className="keyboard-middle-row"></div>
             <div className="keyboard--row"></div>

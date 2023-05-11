@@ -1,8 +1,10 @@
 body {
+    font-family: 'Courier New', Courier, monospace;
     font-family: 'Passion One', cursive;
 }
 
 button {
+    font-family: 'Courier New', Courier, monospace;
     font-family: 'Passion One', cursive;
 }
 
@@ -23,6 +25,7 @@ button {
     justify-content: center;
     align-items: stretch;
     overflow: auto;
+    background: linear-gradient(to bottom, transparent 50%, #010C80 50%);
 }
 
 @media (min-width: 601px) {
@@ -106,27 +109,28 @@ button {
 .category-name {
     padding-bottom: 5px;
     border-bottom: 2px solid black;
-    font-size: x-large;
+    font-size: xx-large;
 
 }
 
 .shark-container {
     flex-basis: 20%;
-    /* background-color: rgb(255, 247, 231); */
+    background: linear-gradient(to bottom, transparent 50%, #77D4FC 50%);
     display: flex;
     align-items: center;
+    margin-bottom: -1px;
 }
 
 .word-progress-container {
     flex-basis: 22.5%;
-    /* background-color: rgb(238, 255, 255); */
+    background: linear-gradient(to bottom, #77D4FC 0%, #4097df 50%, #010C80 100%);
     display: flex;
-
+    margin-bottom: -1px;
 }
 
 .keyboard-container {
     flex-basis: 22.5%;
-    /* background-color: rgba(255, 255, 231, 0.701); */
+    background-color: #010C80;
 
 }
 
@@ -161,9 +165,10 @@ button {
     margin: 5px;
     padding: 5px;
     font-size: 18px;
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(255, 255, 255);
     border-radius: 20%;
     border-color: #f8fff3;
+    color: #010C80;
     /* font-weight: bold; */
 }
 
@@ -178,7 +183,7 @@ button {
         flex-grow: 1;
         margin: 5px;
         padding: 10px;
-        font-size: 18px;
+        font-size: 22px;
 
     }
 
@@ -192,10 +197,10 @@ button {
     margin: 5px;
     padding: 5px;
     font-size: 18px;
-    background-color: rgba(50, 45, 45, 0.783);
+    background-color: #77D4FC;
     border-radius: 20%;
-    color: white;
-    border-color: #fdfdfd;
+    color: #010C80;
+    border-color: #010C80;
     /* font-weight: bold; */
 }
 
@@ -204,7 +209,7 @@ button {
         flex-grow: 1;
         margin: 5px;
         padding: 10px;
-        font-size: 18px;
+        font-size: 22px;
 
     }
 }
@@ -219,11 +224,12 @@ button {
 .letter-space {
     margin: 5px;
     min-width: 5%;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #ffffff;
     max-height: 50px;
     min-height: 20px;
     justify-content: center;
-    display: flex
+    display: flex;
+    color: #ffffff
 }
 
 .new-line {
