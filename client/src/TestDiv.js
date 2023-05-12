@@ -46,10 +46,6 @@ function TestDiv() {
         } catch (e) {}
     };
 
-    return (
-        <div>
-            <button onClick={nextDay}>Next Day</button>
-        </div>
-    );
+    return <div>{/* <button onClick={nextDay}>Next Day</button> */}</div>;
 }
 export default TestDiv;

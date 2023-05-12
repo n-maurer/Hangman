@@ -540,7 +540,7 @@ app.delete("/api/used-words/:id", async (request, response) => {
     }
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3005;
 app.listen(port, () => {
     console.log(`Server is up and listening on port ${port}`);
 });

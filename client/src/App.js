@@ -46,7 +46,7 @@ function App(props) {
 
     return (
         <div className="app">
-            <TestDiv />
+            {/* <TestDiv /> */}
             <div className="game-container">
                 <>
                     {props.wordOfDay.every(
