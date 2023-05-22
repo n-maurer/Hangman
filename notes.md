@@ -31,13 +31,18 @@ npm start
 
 see tables: \dt
 
+pm2 start apps/shark-bait/server/server.js
+pm2 stop 0
+
+510
+
 ## YouTube Video
 
 https://www.youtube.com/watch?v=7qAXvOFhlDc
 2:46:33
 
 https://www.youtube.com/watch?v=NjYsXuSBZ5U
-32:10
+1:20:05
 
 ## Colors
 
@@ -49,8 +54,9 @@ RGB rgb(119,212,252)
 
 ## Get into db
 
+sudo -i -u postgres
 psql -d postgres
-\c sharkbait
+\c shark
 
 ## Scripts
 
